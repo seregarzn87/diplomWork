@@ -1,0 +1,1 @@
+{"uuid":"cc8cc03c-c43e-4e8c-8db6-7137b60f2f09","name":"AvtomatizationTest","children":["192396c7-2b5d-46b3-b639-e406b03fe9b3"],"befores":[],"afters":[{"name":"close","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1710613048250,"stop":1710613050443}],"start":1710613042414,"stop":1710613050444}

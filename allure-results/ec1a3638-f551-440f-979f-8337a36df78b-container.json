@@ -1,0 +1,1 @@
+{"uuid":"ec1a3638-f551-440f-979f-8337a36df78b","name":"AvtoTesting.Registration","children":["bc18b5b9-4085-4f91-979f-7217718aaba6"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1710765404047,"stop":1710765409574}],"afters":[],"start":1710765403989,"stop":1710765411607}
