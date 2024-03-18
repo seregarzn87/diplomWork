@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 public class RegistrationPage {
     public WebDriver driver;
@@ -36,6 +37,9 @@ public class RegistrationPage {
     @FindBy(xpath = "//button[text()='Регистрация']")
     private WebElement registrationButton;
 
+    @FindBy(xpath = "/html/body/main/div/p")
+    private WebElement messageAboutSuccessfulRegistration;
+
     public void clickThePersonalAccountTab(){
         thePersonalAccountTab.click();
     }
@@ -66,6 +70,16 @@ public class RegistrationPage {
 
     public void clickRegistrationButton() {
         registrationButton.click();
+    }
+
+    public void verificationOfSuccessfulRegistration(){
+        String message = messageAboutSuccessfulRegistration.getText();
+        String text = "Спасибо за регистрацию в нашем интернет магазине. " +
+                "Теперь вы можете делать покупки быстрее и удобнее. " +
+                "Вы также можете просматривать корзину и список закладок с различных устройств, " +
+                "отслеживать статус своего заказа, видеть свои предыдущие заказы " +
+                "или получать скидки как наш постоянный покупатель.";
+                assert message.equals(text): "Регистрация не пройдена";
     }
 }
 
