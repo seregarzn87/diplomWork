@@ -45,7 +45,7 @@ public class TheSearchBar {
         theSearchBarPage.checkingTheDisplayOfItemsInTheSideSearchBar();
     }
 
-    @Test(description = "Проверка поиска товара с главной страницы")
+    @Test(description = "Проверка поиска товара с главной страницы",priority = 4)
     public void mainPageSearchBar(){
         theSearchBarPage.checkingTheSearchForAnItemFromTheMainPage();
     }
