@@ -14,13 +14,15 @@ public class AutorizationPage {
         this.driver = driver;
     }
     @FindBy(xpath = "//input[@placeholder='E-Mail']")
-    private WebElement emailFieldAutorization;
+    public WebElement emailFieldAutorization;
     @FindBy(xpath = "//input[@placeholder='Пароль']")
-    private WebElement passwordFieldAutorization;
+    public WebElement passwordFieldAutorization;
     @FindBy(xpath = "//button[text()='Вход']")
     private WebElement buttonEntrance;
     @FindBy(xpath = "/html/body/main/div/p")
     private WebElement successfulAuthorizationMessage;
+    @FindBy(xpath = "/html/body/main/div/div[2]/div[1]/div")
+    private WebElement incorrectAuthorization;
 
     public void emailAutorizationInput(String email){
         emailFieldAutorization.sendKeys(email);
@@ -36,6 +38,4 @@ public class AutorizationPage {
         String textLogin = "Вы успешно авторизовались";
         Assert.assertEquals(messageLogin, textLogin);
     }
-
-
 }

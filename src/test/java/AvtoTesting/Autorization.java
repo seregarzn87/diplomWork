@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
+
 public class Autorization {
     public WebDriver driver;
     public AutorizationPage autorizationPage;
@@ -27,25 +28,29 @@ public class Autorization {
         driver.close();
     }
 
-    @Test(description = "Проверка авторизации с валидными данными")
-    public void FillingOuTheAuthorizationForm(){
-        autorizationPage.emailAutorizationInput(ConfProperties.getProperty("email"));
-        autorizationPage.passwordAutorizationInput(ConfProperties.getProperty("password"));
+    @Test(dataProvider = "value", description = "Проверка авторизации с не валидными данными", priority = 1)
+    public void negativeTestDataProviderAuthorization(String email, String password){
+        autorizationPage.emailFieldAutorization.clear();
+        autorizationPage.emailAutorizationInput(email);
+        autorizationPage.passwordFieldAutorization.clear();
+        autorizationPage.passwordAutorizationInput(password);
         autorizationPage.clickButtonEntrance();
         autorizationPage.verificationOfSuccessfulAuthorization();
     }
 
-    @Test(dataProvider = "value", description = "Проверка авторизации с не валидными данными")
-    public void negativeTestDataProviderAuthorization(String email, String password){
-        autorizationPage.emailAutorizationInput(email);
-        autorizationPage.passwordAutorizationInput(password);
+    @Test(description = "Проверка авторизации с валидными данными", priority = 2)
+    public void FillingOuTheAuthorizationForm(){
+        autorizationPage.emailFieldAutorization.clear();
+        autorizationPage.emailAutorizationInput(ConfProperties.getProperty("email"));
+        autorizationPage.passwordFieldAutorization.clear();
+        autorizationPage.passwordAutorizationInput(ConfProperties.getProperty("password"));
         autorizationPage.clickButtonEntrance();
         autorizationPage.verificationOfSuccessfulAuthorization();
     }
 
     @DataProvider(name = "value")
     public Object[][] dataProviderMethodAuthorization() {
-        Object[][] data = new Object[4][2];
+        Object[][] data = new Object[7][2];
         // 1 row.
         data[0][0] = "serega@yandex.ru";
         data[0][1] = "123456";
@@ -58,6 +63,15 @@ public class Autorization {
         // 4 row.
         data[3][0] = "seregarzn@yandex.ru";
         data[3][1] = "!%67";
+        //5 row
+        data[4][0] = "!hdh@";
+        data[4][1] = "!%67";
+        //6 row
+        data[5][0] = "";
+        data[5][1] = "123456";
+        //7 row
+        data[6][0] = "serega@yandex.ru";
+        data[6][1] = "123";
         return data;
     }
 }

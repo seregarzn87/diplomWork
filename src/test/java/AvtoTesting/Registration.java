@@ -38,8 +38,11 @@ public class Registration {
     }
     @Test(dataProvider = "InvalidData", description = "Проверка заполнения формы регистрации не валидными данными с помощью DataProvider")
     public void negativeTestValueDataProvider(String email, String password, String repeatPassword){
+        registrationPage.emailField.clear();
         registrationPage.EmailInput(email);
+        registrationPage.passwordField.clear();
         registrationPage.PasswordInput(password);
+        registrationPage.repeatPasswordField.clear();
         registrationPage.RepeatPasswordInput(repeatPassword);
         registrationPage.clickRegistrationButton();
         registrationPage.verificationOfSuccessfulRegistration();

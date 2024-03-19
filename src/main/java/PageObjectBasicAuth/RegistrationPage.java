@@ -26,13 +26,13 @@ public class RegistrationPage {
     private WebElement telefonField;
 
     @FindBy(xpath = "//input[@placeholder='E-Mail']")
-    private WebElement emailField;
+    public WebElement emailField;
 
     @FindBy(xpath = "//input[@placeholder='Не менее 6 символов']")
-    private WebElement passwordField;
+    public WebElement passwordField;
 
     @FindBy(xpath = "//input[@placeholder='Повторите пароль']")
-    private WebElement repeatPasswordField;
+    public WebElement repeatPasswordField;
 
     @FindBy(xpath = "//button[text()='Регистрация']")
     private WebElement registrationButton;
@@ -79,7 +79,7 @@ public class RegistrationPage {
                 "Вы также можете просматривать корзину и список закладок с различных устройств, " +
                 "отслеживать статус своего заказа, видеть свои предыдущие заказы " +
                 "или получать скидки как наш постоянный покупатель.";
-                assert message.equals(text): "Регистрация не пройдена";
+                assert message.equals(text): "Регистрация пройдена";
     }
 }
 
