@@ -40,4 +40,13 @@ public class TheSearchBar {
         theSearchBarPage.addingTheItemNameToTheSearchBar();
         theSearchBarPage.checkingTheCorrectnessOfDisplayingInformationInTheSearchBar();
     }
+    @Test(description = "Проверка поиска товара по боковой панели поиска",priority = 3)
+    public void TheSideSearchBar(){
+        theSearchBarPage.checkingTheDisplayOfItemsInTheSideSearchBar();
+    }
+
+    @Test(description = "Проверка поиска товара с главной страницы")
+    public void mainPageSearchBar(){
+        theSearchBarPage.checkingTheSearchForAnItemFromTheMainPage();
+    }
 }
