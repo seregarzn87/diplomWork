@@ -27,11 +27,12 @@ public class Bookmarks {
         public void close(){
             driver.close();
         }
-        @Test(description = "Проверка добавления товара в закладки")
+        @Test(description = "Проверка добавления товара в закладки и отображения на экране элементов вкладки закладки и их нужного количества")
         public void CheckingTheAdditionOfAnItemToBookmarks(){
             bookmarksPage.EnteringAnItemInTheSearchBar();
             bookmarksPage.clickElementPage();
             bookmarksPage.checkingTheNumberOfProductsInBookmarks();
+            bookmarksPage.clickBookmarksElement();
+            bookmarksPage.CheckingTheDisplayOfTabItemsBookmarks();
         }
-
     }
