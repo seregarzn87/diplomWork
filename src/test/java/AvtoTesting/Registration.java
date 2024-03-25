@@ -9,10 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.Augmenter;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,13 +28,13 @@ public class Registration {
         driver.get(ConfProperties.getProperty("registrationPage"));
     }
 
-    @AfterTest(alwaysRun = true)
+    @AfterMethod(alwaysRun = true)
     public String captureScreen() {
         String path;
         try {
             WebDriver webDriver = new Augmenter().augment(driver);
             File scrFile = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-            path = "./target/screrncsots/" + scrFile.getName();
+            path = "./target/screenshot/" + scrFile.getName();
             FileUtils.copyFile(scrFile, new File(path));
         } catch (IOException e) {
             path = "Скриншот не сделан" + e.getMessage();
@@ -45,10 +42,10 @@ public class Registration {
         return path;
     }
 
-    @AfterTest
-    public void close() {
+    @AfterSuite
+    public void close(){
         driver.quit();
-   }
+    }
 
     @Test(description = "Проверка заполнения формы регистрации не валидными данными")
     public void negativeTestValue() {
