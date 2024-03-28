@@ -13,6 +13,7 @@ public class AutorizationPage {
         PageFactory.initElements(driver, this);
         this.driver = driver;
     }
+
     @FindBy(xpath = "//input[@placeholder='E-Mail']")
     public WebElement emailFieldAutorization;
     @FindBy(xpath = "//input[@placeholder='Пароль']")
@@ -24,18 +25,28 @@ public class AutorizationPage {
     @FindBy(xpath = "/html/body/main/div/div[2]/div[1]/div")
     private WebElement incorrectAuthorization;
 
-    public void emailAutorizationInput(String email){
+    public void emailAutorizationInput(String email) {
         emailFieldAutorization.sendKeys(email);
     }
-    public void passwordAutorizationInput(String password){
+
+    public void passwordAutorizationInput(String password) {
         passwordFieldAutorization.sendKeys(password);
     }
-    public void clickButtonEntrance(){
+
+    public void clickButtonEntrance() {
         buttonEntrance.click();
     }
-    public void verificationOfSuccessfulAuthorization(){
+
+    public void verificationOfSuccessfulAuthorization() {
         String messageLogin = successfulAuthorizationMessage.getText();
         String textLogin = "Вы успешно авторизовались";
         Assert.assertEquals(messageLogin, textLogin);
     }
-}
+
+    public void verificationOfNotSuccessfulAuthorization() {
+        String messageIncorrect = incorrectAuthorization.getText();
+        String textIncorrect = "Неверно";
+        assert messageIncorrect.contains(textIncorrect): "Регистрация не пройдена";
+    }
+    }
+

@@ -52,7 +52,7 @@ public class Autorization {
         autorizationPage.passwordFieldAutorization.clear();
         autorizationPage.passwordAutorizationInput(password);
         autorizationPage.clickButtonEntrance();
-        autorizationPage.verificationOfSuccessfulAuthorization();
+        autorizationPage.verificationOfNotSuccessfulAuthorization();
     }
 
     @Test(description = "Проверка авторизации с валидными данными", priority = 2)

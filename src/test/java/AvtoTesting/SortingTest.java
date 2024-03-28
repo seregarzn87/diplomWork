@@ -1,10 +1,7 @@
 package AvtoTesting;
 
 import PageObjectBasicAuth.SortingPage;
-import PageObjectBasicAuth.TheSearchBarPage;
-import io.qameta.allure.Attachment;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -16,7 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public class Sorting {
+public class SortingTest {
     public WebDriver driver;
     public SortingPage sortingPage;
 
@@ -29,7 +26,7 @@ public class Sorting {
         driver.get(ConfProperties.getProperty("theSearchBarPage"));
     }
     @AfterMethod(alwaysRun = true)
-    public String captureScreen() {
+    public String captureScreenTest() {
         String path;
         try {
             WebDriver webDriver = new Augmenter().augment(driver);
@@ -47,7 +44,7 @@ public class Sorting {
         driver.quit();
     }
     @Test(description = "Проверка сортировки по возрастанию цены и минимальному значению")
-    public void sortPrice(){
+    public void sortPriceTest(){
         sortingPage.clickRefreshPage();
         sortingPage.delayInOpening();
         sortingPage.openPageSort();
@@ -57,7 +54,7 @@ public class Sorting {
         sortingPage.priceComparison();
     }
     @Test(description = "Проверка сортировки по производителю")
-    public void sortBrand(){
+    public void sortBrandTest(){
         sortingPage.openPageSort();
         sortingPage.clickElementBrand();
         sortingPage.clickGetElementBrand();

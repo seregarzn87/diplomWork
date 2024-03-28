@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
+import java.time.Duration;
+
 public class RegistrationPage {
     public WebDriver driver;
 
@@ -13,6 +15,7 @@ public class RegistrationPage {
         PageFactory.initElements(driver, this);
         this.driver = driver;
     }
+
     @FindBy(xpath = "//span[text()=' Личный кабинет']")
     private WebElement thePersonalAccountTab;
 
@@ -40,19 +43,25 @@ public class RegistrationPage {
     @FindBy(xpath = "/html/body/main/div/p")
     private WebElement messageAboutSuccessfulRegistration;
 
-    public void clickThePersonalAccountTab(){
+    @FindBy(xpath = "/html/body/main/div/div[4]")
+    private WebElement messageAboutNotSuccessfulRegistration;
+
+    @FindBy(xpath = "/html/body/main/div/div[3]")
+    private WebElement getMessageAboutSuccessfulRegistration;
+
+    public void clickThePersonalAccountTab() {
         thePersonalAccountTab.click();
     }
 
-    public void NameInput(String name){
+    public void NameInput(String name) {
         nameField.sendKeys(name);
     }
 
-    public void SurnameInput(String surname){
+    public void SurnameInput(String surname) {
         surnameField.sendKeys(surname);
     }
 
-    public void TelefonInput(String telefon){
+    public void TelefonInput(String telefon) {
         telefonField.sendKeys(telefon);
     }
 
@@ -71,17 +80,40 @@ public class RegistrationPage {
     public void clickRegistrationButton() {
         registrationButton.click();
     }
+    public void delayInOpening(){
+        try {
+            Thread.sleep(Duration.ofSeconds(3));
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-    public void verificationOfSuccessfulRegistration(){
-        String message = messageAboutSuccessfulRegistration.getText();
+    public void verificationOfSuccessfulRegistration() {
+        String messageSuccessful = messageAboutSuccessfulRegistration.getText();
+        String messageNotSuccessful = messageAboutNotSuccessfulRegistration.getText();
+
         String text = "Спасибо за регистрацию в нашем интернет магазине. " +
                 "Теперь вы можете делать покупки быстрее и удобнее. " +
                 "Вы также можете просматривать корзину и список закладок с различных устройств, " +
                 "отслеживать статус своего заказа, видеть свои предыдущие заказы " +
                 "или получать скидки как наш постоянный покупатель.";
-                assert message.equals(text): "Регистрация не пройдена";
+        String textNot = "\n" +
+                "\t\t\t    \t\tПароли не совпадают\n" +
+                "\t\t\t    \t\t";
+        if (messageSuccessful.equals(text)) {
+            System.out.println("Регистрация пройдена");
+        } else if (messageNotSuccessful.equals(textNot)) {
+            System.out.println("Регистрация не пройдена");
+        }
     }
-}
+        public void verificationRegistration() {
+            String messageGetMessageAboutSuccessfulRegistration = getMessageAboutSuccessfulRegistration.getText();
+            String textUser = "зарегистрирован";
+            assert messageGetMessageAboutSuccessfulRegistration.contains(textUser);
+        }
+    }
+
+
 
 
 

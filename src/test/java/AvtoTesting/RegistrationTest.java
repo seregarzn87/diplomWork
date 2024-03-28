@@ -2,20 +2,18 @@ package AvtoTesting;
 
 import PageObjectBasicAuth.RegistrationPage;
 import org.apache.commons.io.FileUtils;
-import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.Augmenter;
-import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public class Registration {
+public class RegistrationTest {
     public static RegistrationPage registrationPage;
     public WebDriver driver;
 
@@ -29,7 +27,7 @@ public class Registration {
     }
 
     @AfterMethod(alwaysRun = true)
-    public String captureScreen() {
+    public String captureScreenTest() {
         String path;
         try {
             WebDriver webDriver = new Augmenter().augment(driver);
@@ -48,15 +46,15 @@ public class Registration {
     }
 
     @Test(description = "Проверка заполнения формы регистрации не валидными данными")
-    public void negativeTestValue() {
+    public void negativeTestValueTest() {
         registrationPage.EmailInput(ConfProperties.getProperty("email"));
         registrationPage.PasswordInput(ConfProperties.getProperty("password"));
-        registrationPage.RepeatPasswordInput(ConfProperties.getProperty("repeatPassword"));
+        registrationPage.RepeatPasswordInput(ConfProperties.getProperty("repeatPasswordNot"));
         registrationPage.clickRegistrationButton();
         registrationPage.verificationOfSuccessfulRegistration();
     }
     @Test(dataProvider = "InvalidData", description = "Проверка заполнения формы регистрации не валидными данными с помощью DataProvider")
-    public void negativeTestValueDataProvider(String email, String password, String repeatPassword){
+    public void negativeTestValueDataProviderTest(String email, String password, String repeatPassword){
         registrationPage.emailField.clear();
         registrationPage.EmailInput(email);
         registrationPage.passwordField.clear();
@@ -68,7 +66,7 @@ public class Registration {
     }
 
     @Test(description = "Проверка заполнение формы регистрации валидными данными")
-    public void FillingOutTheRegistrationForm() {
+    public void FillingOutTheRegistrationFormTest() {
         registrationPage.clickThePersonalAccountTab();
         registrationPage.clickRegistrationButton();
         registrationPage.NameInput(ConfProperties.getProperty("name"));
@@ -78,7 +76,7 @@ public class Registration {
         registrationPage.PasswordInput(ConfProperties.getProperty("password"));
         registrationPage.RepeatPasswordInput(ConfProperties.getProperty("repeatPassword"));
         registrationPage.clickRegistrationButton();
-        registrationPage.verificationOfSuccessfulRegistration();
+        registrationPage.verificationRegistration();
     }
 
         @DataProvider(name = "InvalidData")
