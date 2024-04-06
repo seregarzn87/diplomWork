@@ -1,5 +1,6 @@
 package PageObjectBasicAuth;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -23,12 +24,15 @@ public class AddingShoppingCart {
     @FindBy(xpath = "//input[@name='search']")
             public WebElement searchBarMainField;
 
+    @Step("Добавление элемента в строку поиска")
     public void addingAndClickAnItemToTheSearchBar() {
         searchBarMainField.sendKeys("телефон", Keys.ENTER);
     }
+    @Step("Нажатие на кнопку поиска")
     public void clickButton() {
         button.click();
     }
+    @Step("Проверка корзины покупок")
     public void checkingTheShoppingCart () {
         int b = Integer.parseInt(count.getText());
         int a = 1;
