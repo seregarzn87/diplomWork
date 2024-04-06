@@ -1,13 +1,18 @@
-package AvtoTesting;
+package AvtoTestingFirefox;
 
+import AvtoTestingChrome.ConfProperties;
 import PageObjectBasicAuth.LocationPage;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.Augmenter;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,7 +24,7 @@ public class Location {
 
     @BeforeClass
     public void setup() {
-        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
         locationPage = new LocationPage(driver);
         driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
         driver.manage().window().maximize();

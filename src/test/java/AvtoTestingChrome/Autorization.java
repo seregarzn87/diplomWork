@@ -1,4 +1,4 @@
-package AvtoTesting;
+package AvtoTestingChrome;
 
 import PageObjectBasicAuth.AutorizationPage;
 import org.apache.commons.io.FileUtils;

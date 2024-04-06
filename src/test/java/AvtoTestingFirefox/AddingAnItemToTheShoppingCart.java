@@ -1,12 +1,17 @@
-package AvtoTesting;
+package AvtoTestingFirefox;
 
 import PageObjectBasicAuth.AddingShoppingCart;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.*;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.Augmenter;
-import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +23,7 @@ public class AddingAnItemToTheShoppingCart {
         public AddingShoppingCart addingShoppingCart;
         @BeforeClass
         public void open(){
-            driver = new ChromeDriver();
+            driver = new FirefoxDriver();
             addingShoppingCart = new AddingShoppingCart(driver);
             driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
             driver.manage().window().maximize();

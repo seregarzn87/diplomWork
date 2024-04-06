@@ -1,11 +1,13 @@
-package AvtoTesting;
+package AvtoTestingFirefox;
 
+import AvtoTestingChrome.ConfProperties;
 import PageObjectBasicAuth.RegistrationPage;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.Augmenter;
 import org.testng.annotations.*;
 
@@ -19,11 +21,11 @@ public class RegistrationTest {
 
     @BeforeClass
     public void setup() {
-        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
         registrationPage = new RegistrationPage(driver);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        driver.get(ConfProperties.getProperty("registrationPage"));
+        driver.get(AvtoTestingChrome.ConfProperties.getProperty("registrationPage"));
     }
 
     @AfterMethod(alwaysRun = true)
@@ -47,9 +49,9 @@ public class RegistrationTest {
 
     @Test(description = "Проверка заполнения формы регистрации не валидными данными")
     public void negativeTestValueTest() {
-        registrationPage.EmailInput(ConfProperties.getProperty("email"));
-        registrationPage.PasswordInput(ConfProperties.getProperty("password"));
-        registrationPage.RepeatPasswordInput(ConfProperties.getProperty("repeatPasswordNot"));
+        registrationPage.EmailInput(AvtoTestingChrome.ConfProperties.getProperty("email"));
+        registrationPage.PasswordInput(AvtoTestingChrome.ConfProperties.getProperty("password"));
+        registrationPage.RepeatPasswordInput(AvtoTestingChrome.ConfProperties.getProperty("repeatPasswordNot"));
         registrationPage.clickRegistrationButton();
         registrationPage.verificationOfSuccessfulRegistration();
     }
@@ -69,11 +71,11 @@ public class RegistrationTest {
     public void FillingOutTheRegistrationFormTest() {
         registrationPage.clickThePersonalAccountTab();
         registrationPage.clickRegistrationButton();
-        registrationPage.NameInput(ConfProperties.getProperty("name"));
-        registrationPage.SurnameInput(ConfProperties.getProperty("surname"));
-        registrationPage.EmailInput(ConfProperties.getProperty("email"));
-        registrationPage.TelefonInput(ConfProperties.getProperty("telefon"));
-        registrationPage.PasswordInput(ConfProperties.getProperty("password"));
+        registrationPage.NameInput(AvtoTestingChrome.ConfProperties.getProperty("name"));
+        registrationPage.SurnameInput(AvtoTestingChrome.ConfProperties.getProperty("surname"));
+        registrationPage.EmailInput(AvtoTestingChrome.ConfProperties.getProperty("email"));
+        registrationPage.TelefonInput(AvtoTestingChrome.ConfProperties.getProperty("telefon"));
+        registrationPage.PasswordInput(AvtoTestingChrome.ConfProperties.getProperty("password"));
         registrationPage.RepeatPasswordInput(ConfProperties.getProperty("repeatPassword"));
         registrationPage.clickRegistrationButton();
         registrationPage.verificationRegistration();
